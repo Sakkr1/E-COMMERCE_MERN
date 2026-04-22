@@ -1,3 +1,4 @@
+import ("dotenv/config");
 import { NextFunction, Response, Request} from "express";
 import jwt from "jsonwebtoken";
 import { userModel } from "../models/userModel";
@@ -19,7 +20,7 @@ const validateJWT = (req: ExtendRequest, res: Response, next: NextFunction) => {
         return;
     }
 
-    jwt.verify(token, "d090d9b788340d8e09a093c29db31863a9c425ef4f1a59a76ba1657a89771c1d", async(err, payload) => {
+    jwt.verify(token, process.env.SECRET_JWT || "", async(err, payload) => {
         if(err) {
             res.status(403).send("Invalid Token");
             return;

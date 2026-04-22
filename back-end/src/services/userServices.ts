@@ -1,5 +1,5 @@
 /* Register and Login */
-
+import("dotenv/config")
 import { userModel } from "../models/userModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -44,5 +44,5 @@ export const login = async({ email, password }: loginParams) => {
 }
 
 const generateJWT = (data: any) => {
-    return jwt.sign(data, "d090d9b788340d8e09a093c29db31863a9c425ef4f1a59a76ba1657a89771c1d")
+    return jwt.sign(data, process.env.SECRET_JWT || "");
 }

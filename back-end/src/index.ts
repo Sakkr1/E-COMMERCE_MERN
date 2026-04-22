@@ -4,9 +4,11 @@ import userRouter from "./routes/userRoute";
 import productRoute from "./routes/productRoute";
 import { seedInitProducts } from "./services/productServices";
 import cartRoute from "./routes/cartRoute";
+import dotenv from "dotenv";
 
 const app = express();
 const port = 3111;
+dotenv.config();
 
 app.use(express.json());
 
@@ -14,7 +16,7 @@ app.use("/user", userRouter);
 app.use("/product", productRoute);
 app.use("/cart", cartRoute);
 
-mongoose.connect("mongodb://localhost:27017/ecommerce")
+mongoose.connect(process.env.DATABASE_URL || "")
     .then(() => console.log(`Connected To Database!`))
     .catch((err) => console.log("Something went wrong: ", err));
 
