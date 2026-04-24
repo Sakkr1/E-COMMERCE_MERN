@@ -5,10 +5,14 @@ import productRoute from "./routes/productRoute";
 import { seedInitProducts } from "./services/productServices";
 import cartRoute from "./routes/cartRoute";
 import dotenv from "dotenv";
+import cors from "cors";
+console.log("index.ts is loaded")
 
 const app = express();
 const port = 3111;
 dotenv.config();
+
+app.use(cors());
 
 app.use(express.json());
 
