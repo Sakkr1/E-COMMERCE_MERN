@@ -12,7 +12,6 @@ function HomePage() {
         const fetchProcess = async() => {
             const res = await fetch(`${BASE_URL}/product`);
             const data = await res.json()
-            console.log(data);
             setProducts(data);
         }
         fetchProcess();
